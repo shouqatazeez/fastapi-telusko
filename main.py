@@ -28,5 +28,9 @@ def productid(id:int):
     return "elements not found"
    
 
+@app.post("/products")
+def addproduct(item:product):
+    products.append(item)
+    return "product added in list "
 
     
