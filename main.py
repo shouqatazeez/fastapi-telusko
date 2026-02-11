@@ -21,5 +21,12 @@ def productslist():
 
 @app.get("/products/{id}")
 def productid(id:int):
-    return products[id]
+    for product in products:
+        if(product.id== id):
+            return product
+        
+    return "elements not found"
+   
+
+
     
