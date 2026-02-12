@@ -1,0 +1,5 @@
+// This is type in which the it converts the user command or data into the sql so that database can understand it well best for the developers
+
+pip install sqlalchemy 
+
+// psycopg2 <== this command is used as the driver that communicates in between the database i.e postgresql i.e database and the sqlachemy 
