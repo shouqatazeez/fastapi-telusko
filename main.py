@@ -45,3 +45,11 @@ def editproducts(id:int, editproduct:product):
 
     return "not added product"
     
+# This method is used to delete the product 
+@app.delete("/products")
+def deleteproduct(id:int):
+    for i in range(len(products)):
+        if products[i].id == id:
+         del products[i] 
+
+         return "Fail to delete"
