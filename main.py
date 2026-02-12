@@ -33,3 +33,15 @@ def productid(id:int):
 def addproduct(item:product):
     products.append(item)
     return "product added in list "
+
+
+# This is how we edit the product we want to edit
+@app.put("/products")
+def editproducts(id:int, editproduct:product):
+    for i in range(len(products)):
+        if products[i].id == id:
+            products[i] = editproduct
+        return "product added successfully"
+
+    return "not added product"
+    
