@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from models import product
+from database import session
 
 app = FastAPI()
 
@@ -17,6 +18,7 @@ products = [
 # This is all about the list of products that we want to show on the page
 @app.get("/products")
 def productslist():
+    db = session()
     return products
 
 # This is how we search products with the id 
