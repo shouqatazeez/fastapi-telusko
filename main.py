@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from models import product
-from database import session
+from database import session, engine
+import database_models
 
 app = FastAPI()
+
+database_models.Base.metadata.create_all(bind= engine)
 
 
 @app.get("/")
@@ -15,10 +18,23 @@ products = [
     product(id=2,name = "Laptop", description="This is how we use for personal purpose", price = "20",quantity=20),
     product(id=3,name="TV", description= "This is how we watch for the purpose of Entertainment", price="30", quantity= 25)
 ]
+
+def initdb():
+    db = session()
+    
+    count = db.query(database_models.product).count()
+
+    if count == 0:
+        for product in products:
+          db.add(database_models.product(**product.model_dump()))
+        db.commit()
+
+initdb()
+
+
 # This is all about the list of products that we want to show on the page
 @app.get("/products")
 def productslist():
-    db = session()
     return products
 
 # This is how we search products with the id 
