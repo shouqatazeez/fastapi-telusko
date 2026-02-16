@@ -19,6 +19,13 @@ products = [
     product(id=3,name="TV", description= "This is how we watch for the purpose of Entertainment", price="30", quantity= 25)
 ]
 
+def get_db():
+    db = session()
+    try:
+        yield db
+    finally:
+        db.close()
+
 def initdb():
     db = session()
     
